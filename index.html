@@ -2,229 +2,159 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Emmanuel Design Web Class task</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design for Developers Emmanuel Work</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
+    body { margin: 0; font-family: 'Inter', sans-serif; }
+    header { background-color: #000; color: white; padding: 20px; display: flex; align-items: center; flex-wrap: wrap; }
+    nav { display: flex; flex-wrap: wrap; margin-left: auto; }
+    nav a {
+      margin-left: 10px; padding: 10px 15px; text-decoration: none; color: white;
     }
-
-    .navbar {
-      background: black;
-      padding: 15px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .nav-container {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .nav-container img {
-      height: 30px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 10px;
-    }
-
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      padding: 6px 12px;
-    }
-
-    .nav-links a:first-child {
-      background: white;
-      color: black;
-    }
-
-    .nav-links a:nth-child(n+2) {
-      background: #6495ed;
-    }
-
-    .hero-left {
-      background: black;
-      color: white;
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    .hero-right {
-      background: white;
-      padding: 40px 60px;
-      display: flex;
-      justify-content: flex-end;
-      text-align: left;
-    }
-
-    .hero-right-content {
-      max-width: 400px;
-    }
-
-    .hero-right h4 {
-      font-weight: bold;
-    }
-
-    .hero-right p {
-      line-height: 1.5;
-    }
-
-    .hero-right button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      background: #6495ed;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-
-    .testimonials {
-      background: #82b3f4;
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    .testimonials h3 {
-      color: white;
-      margin-bottom: 5px;
-    }
-
+    nav a.active { background-color: white; color: black; }
+    .hero, .about, .features, .pricing, .contact { padding: 60px 20px; text-align: center; }
+    .hero { background-color: #000; color: white; }
+    .hero h1 { font-size: 2em; margin: 0; }
+    .hero p { color: #aaa; }
+    .section h2 { margin-bottom: 10px; }
+    .section p { max-width: 600px; margin: auto; line-height: 1.6; }
+    .btn { margin-top: 20px; padding: 10px 20px; background-color: #8da9ff; color: white; border: none; cursor: pointer; }
+    .testimonials { background-color: #8da9ff; color: white; position: relative; overflow: hidden; }
     .testimonial-boxes {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-top: 30px;
+      display: flex; transition: transform 0.5s ease; width: 300%;
     }
-
     .testimonial {
-      background: white;
-      padding: 20px;
-      max-width: 300px;
+      background-color: white; color: black; padding: 20px; width: 100vw; box-sizing: border-box;
+      flex-shrink: 0; display: flex; justify-content: center; align-items: center; font-weight: bold;
     }
-
+    .testimonial h2{
+        text-align: center;
+    }
+    .slider-controls { position: absolute; top: 50%; transform: translateY(-50%); width: 100%; display: flex; justify-content: space-between; padding: 0 20px; }
+    .slider-controls button {
+      background-color: white; border: none; padding: 10px; cursor: pointer; border-radius: 50%;
+    }
     .footer {
-      background: black;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      padding: 30px 50px;
-      flex-wrap: wrap;
+      background-color: #111; color: white; padding: 40px 20px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px;
+    }
+    .footer-column { flex: 1; min-width: 250px; }
+    .footer input, .footer textarea {
+      width: 100%; margin-bottom: 10px; padding: 10px; border: none; border-radius: 5px; box-sizing: border-box;
+    }
+    .footer .send-btn { background-color: #8da9ff; color: white; border: none; padding: 10px; cursor: pointer; width: 100%; }
+    .footer ul { list-style: none; padding: 0; }
+    .footer ul li { margin: 5px 0; }
+    .copyright { background-color: #222; color: #ccc; text-align: center; padding: 10px; font-size: 14px; }
+    .about{
+        background-color: #ffd433;
+    }
+    .features{
+        background-color: #dadada;
+    }
+    .pricing{
+        background-color: #1a43fa;
     }
 
-    .footer div {
-      margin-bottom: 20px;
-    }
-
-    .footer h4 {
-      margin-bottom: 10px;
-    }
-
-    .contact input {
-      display: block;
-      margin-bottom: 10px;
-      padding: 5px;
-      width: 200px;
-    }
-
-    .contact button {
-      padding: 5px 10px;
-      background: #6495ed;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-
-    .bottom-bar {
-      background: #333;
-      color: lightgray;
-      text-align: center;
-      padding: 10px;
-      font-size: 14px;
+    @media (max-width: 768px) {
+      .testimonial { font-size: 14px; }
+      nav { justify-content: center; margin-top: 10px; }
+      .hero h1 { font-size: 1.5em; }
+      .section p { padding: 0 10px; }
     }
   </style>
 </head>
 <body>
+  <header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma" style="height: 30px;">
+    <nav>
+      <a class="active" href="#home">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#features">Feature</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact Us</a>
+    </nav>
+  </header>
 
-  <div class="navbar">
-    <div class="nav-container">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="logo" />
-      <div class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">About Us</a>
-        <a href="#">Feature</a>
-        <a href="#">Pricing</a>
-        <a href="#">Contact Us</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="hero-left">
-    <h4>Design for Developers</h4>
+  <div id="home" class="hero">
+    <h1>Design for Developers</h1>
     <p>Learn how to enhance your website</p>
   </div>
 
-  <div class="hero-right">
-    <div class="hero-right-content">
-      <h4>Learn Web Design</h4>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley</p>
-      <p>since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-      <button>Learn more</button>
+
+
+  <div id="about" class="about section">
+    <h2>About Us</h2>
+    <p>We are passionate developers and designers focused on delivering clean and modern web solutions. Our mission is to teach and empower others to build better websites.</p>
+  </div>
+
+  <div id="features" class="features section">
+    <h2>Feature</h2>
+    <p>Our platform offers a wide range of tools and templates, responsive layouts, and easy-to-follow guides to help you bring your web design ideas to life.</p>
+  </div>
+
+  <div id="pricing" class="pricing section">
+    <h2>Pricing</h2>
+    <p>Choose from flexible plans: Free, Pro, and Enterprise. Each plan is crafted to fit the needs of different users — from beginners to professionals.</p>
+  </div>
+
+  <div class="section testimonials">
+    <h2>Testimonials</h2>
+    <p>These are testimonials from clients</p>
+    <div class="slider-controls">
+      <button onclick="prevSlide()">❮</button>
+      <button onclick="nextSlide()">❯</button>
+    </div>
+    <div class="testimonial-boxes" id="slider">
+      <div class="testimonial">Testimonial 1 - took a galley of type and scr</div>
+      <div class="testimonial">Testimonial 2 - took a galley of type and scr</div>
+      <div class="testimonial">Testimonial 3 - took a galley of type and scr</div>
     </div>
   </div>
 
-
-  <div class="testimonials">
-    <h3>Testimonials</h3>
-    <p>These are testimonials from our clients</p>
-    <div class="testimonial-boxes">
-      <div class="testimonial">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      </div>
-      <div class="testimonial">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      </div>
-      <div class="testimonial">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      </div>
+  <div id="contact" class="footer">
+    <div class="footer-column">
+      <h3>Contact Us</h3>
+      <input type="text" placeholder="Your Name" />
+      <input type="email" placeholder="Your Email" />
+      <textarea rows="3" placeholder="Your Message"></textarea>
+      <button class="send-btn">Send</button>
     </div>
-  </div>
-
-  <div class="footer">
-    <div class="contact">
-      <h4>Contact Us</h4>
-      <p>Send us a message</p>
-      <input type="text" placeholder="Name" />
-      <input type="email" placeholder="Email" />
-      <input type="text" placeholder="Message" />
-      <button>Send</button>
-    </div>
-    <div>
-      <h4>Sitemap</h4>
-      <p><strong>All our pages</strong></p>
+    <div class="footer-column">
+      <h3>Sitemap</h3>
       <ul>
-        <li><strong>Home</strong></li>
-        <li><strong>About us</strong></li>
-        <li><strong>Feature</strong></li>
-        <li><strong>Pricing</strong></li>
-        <li><strong>Contact us</strong></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#features">Feature</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact Us</a></li>
       </ul>
     </div>
-    <div>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="logo" height="30" />
-      <p>✉ egentle05@gmail.com</p>
-      <p>📞 +(250)- 0788208798</p>
+    <div class="footer-column">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" style="height: 30px;">
+      <p>📧 +250-0785587915</p>
+      <p>📞 company@gmail.com</p>
     </div>
   </div>
 
-  <div class="bottom-bar">
-    C This is done by Emmanuel Tuyishimire please keep its copyright
+  <div class="copyright">
+    © This is done by Emmanuel. Please, it's copyright.
   </div>
+
+  <script>
+    let currentIndex = 0;
+    function showSlide(index) {
+
+      const slider = document.getElementById("slider");
+      const totalSlides = slider.children.length;
+      if (index >= totalSlides) currentIndex = 0;
+      else if (index < 0) currentIndex = totalSlides - 1;
+      else currentIndex = index;
+      slider.style.transform = `translateX(-${currentIndex * 100}vw)`;
+
+    }
+    function nextSlide() { showSlide(currentIndex + 1); }
+    function prevSlide() { showSlide(currentIndex - 1); }
+  </script>
 </body>
 </html>
